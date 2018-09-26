@@ -37,6 +37,7 @@ Public Class Loan
     Public Property StillOwing As Double
         Get
             Return _StillOwing
+            
         End Get
         Set(value As Double)
             _StillOwing = value
