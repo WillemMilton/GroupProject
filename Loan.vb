@@ -69,24 +69,31 @@ Public Class Loan
     'method calculates if money  can be borrowed from the chest 
     Public Function Borrowmoney(ByRef total As Double, ByVal bm As Double) As Double
         'bm is the money being borrowed it will be taken in from the Form2 class
+        _AmountBorrowing = bm
+        If bm < total And _StillOwing = 0 Then
 
-        If bm < total And StillOwing = 0 Then
-
-            AmountBorrowing += bm
+            _StillOwing += calcInterestAmount(bm,InterestRate)
             ' Return AmountBorrowing
-        End If
-        'get the interest amount
-        calcInterestAmount(AmountBorrowing,InterestRate)
+            Return  _StillOwing 
+        End Function
+    ElseIf bm < total And _StillOwing = StillOwing Then
+                'get the interest amount
+      calcInterestAmount(AmountBorrowing,InterestRate)
         StillOwing = AmountBorrowing+InterestAmount
         'subtracts the amount going out to the member 
         total=total-StillOwing
         Return StillOwing
+    Else 
+        MsgBox("The Amount you are borrowing is more than the Community Chest")
+        End If
+    
     End Function
 
     'this utility method calculates the Intrest amount
     Private Function calcIntrestAmount(ByVal bm As Double, ByVal IR As Double) As Double
         'bm is again the amount of money being borrowed it will be taken in from the Form2 class
         InterestAmount = IR*bm
+    Return InterestAmount
     End Function
 
 
