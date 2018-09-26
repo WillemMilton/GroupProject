@@ -89,9 +89,9 @@ Public Class Loan
     End Function
 
 
-    Public Function Pay(ByVal mp As Double) As Double
+    Public Function Pay(ByRef total as double,ByVal mp As Double) As Double
         StillOwing -= mp
-
+        total+=mp
     End Function
 
 
